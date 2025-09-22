@@ -12,7 +12,7 @@ match userChoose:
         # createing a new customer and pass it info
         new_customer = Customer('Ahmad','Mahdi','123','10','20')
 
-        #  create file pbject and pass the customer to it 
+        #  create file object and pass the customer to it 
         file = csv_bank 
         file.addNewCustomer(new_customer)
     
