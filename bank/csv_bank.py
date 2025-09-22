@@ -1,5 +1,5 @@
 import csv
-from .customer import Customer
+from bank.customer import Customer
 
 # def header(filename='bank.csv'):
 #     with open(filename, 'a', newline='') as file:
@@ -8,7 +8,6 @@ from .customer import Customer
 
 def addNewCustomer(Customer):
     idd = 1000 
-    # Use w to overwrite a file, use a to append to a file (w is probably fine)
     with open('bank.csv', 'a', newline='') as file:
         writer = csv.writer(file)
         writer.writerow([Customer.firstName, Customer.secondName,Customer.password,
