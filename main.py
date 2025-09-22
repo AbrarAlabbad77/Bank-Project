@@ -1,8 +1,8 @@
-from .customer import Customer
+from bank.customer import Customer
 import bank.csv_bank
 
 
-# python3 bank/main.py
+# python3 main.py
 
 while(True):
     print("What action do you want to preform")
