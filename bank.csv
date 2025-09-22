@@ -1,4 +1,7 @@
-Abrar,iii,123,10,20
-Abrar,iii,123,10,20
-Abrar,iii,123,10,20
-Abrar,iii,123,10,20
+id, FirstaName, SecondName, Password, SavingBalance, checkingBalacne
+1,Rema,Ahmed,123,10,20
+1,Rema,Ahmed,123,10,20
+1,Rema,Ahmed,123,10,20
+33,sara,rami,8787,4000,687
+77,Abrar,essa,777,300,600
+999,deem,ali,222,345,500

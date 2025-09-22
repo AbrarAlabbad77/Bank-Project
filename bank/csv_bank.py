@@ -27,12 +27,10 @@ def reading():
 
 
 def addNewCustomer(Customer):
-    idd = 1000 
-        
         # reader = list(csv.reader(file))
     with open('bank.csv', 'a', newline='') as file:
         writer = csv.writer(file)
-        writer.writerow([Customer.firstName, Customer.secondName,Customer.password,
+        writer.writerow([Customer.id,Customer.firstName, Customer.secondName,Customer.password,
                          Customer.balancSavingAccount, Customer.balancCheckingAccount])
 
 
