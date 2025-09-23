@@ -10,12 +10,12 @@ class csvFile:
         
 
     def search(idd , password):
-        for row in reader:
-            #if current rows 2nd value is equal to input, print that row
-            if id == row[1] and password == row[4]:
-                return row[2]+row[3]
-            else:
-                return False
+        with open('bank.csv', 'r', newline='') as file:
+            reader = list(csv.DictReader(file))
+            for row in reader:
+                if idd.strip() == row['id'].strip() and password.strip()== row["Password"].strip():
+                    return row["FirstaName"].strip()+' '+row["SecondName"].strip()
+            return False
 
 
     def reading():

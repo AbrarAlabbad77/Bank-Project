@@ -7,9 +7,6 @@ from bank.csv_bank import csvFile
 class customerNotFoundError(Exception):
     pass
 
-
-
-
 def customerInfo():
     print("Hello , welcome to our bank !! ")
     idd = input("Enter Id : ")
@@ -28,12 +25,13 @@ def userLogin():
     password = input("Enter Password : ")
     
     #  sraech for the user info
-   result = csvFile.search(idd,password)
-   if(result == False):
+    result = csvFile.search(idd, password)
+    if result == False :
         raise customerNotFoundError("Paaword or Id not correct, Please try again !")
-   else:
-       Print(f'Weclome {result} !! ')
-       whilte(True):
+        return False
+    else:
+       print(f'Weclome {result} !! ')
+       while(True):
             print("What action do you want to preform")
             print(" 1/ Withdraw ")
             print(" 2/ Deposit ")
@@ -49,25 +47,10 @@ def userLogin():
                 case 3 :
                     pass 
                 case 4 : 
-                    pass
+                    print("Logining out...")
+                    break
+           
                     
-                 
-            
-                
-       
-       
-   
-   
-
-try:
-    userLogin()
-except customerNotFoundError as e:
-        print("Formula Error:", e) 
-except Exception as e:
-        print("Unexpected Error:", e)            
-    
-
-
 
 
 #  main flow 
@@ -80,14 +63,15 @@ while(True):
     
     match userChoose:
         case 1 :
-            # createing a new customer and pass it info
-            # new_customer = Customer('1','Rema','Ahmed','123','10','20')
             new_customer = customerInfo()
             file = bank.csv_bank 
             file.addNewCustomer(new_customer)
             print(f'Welcome , {new_customer.fname}  /n Added Sueccssflly')
-        case 2:  
-            print('in case 2')
+        case 2:
+            try:
+                userLogin()
+            except Exception as e:
+                print("Unexpected Error:", e)
         case 3 :
             print("Exiting...")
             break 
@@ -95,5 +79,13 @@ while(True):
     
 
 
+# try:
+#     userLogin()
+# except customerNotFoundError as e:
+#         print("Customer Not Found Error:", e) 
+# except Exception as e:
+#         print("Unexpected Error:", e)            
     
+
+ 
     
