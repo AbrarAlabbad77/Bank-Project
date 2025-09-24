@@ -70,7 +70,7 @@ while(True):
             # file = bank.csv_bank 
             file = csvFile
             file.addNewCustomer(new_customer)
-            print(f'Welcome , {new_customer.firstName }  /n Added Sueccssflly')
+            print(f'Welcome , {new_customer.FirstName }   Added Sueccssflly')
         case 2:
             try:
                 userLogin()

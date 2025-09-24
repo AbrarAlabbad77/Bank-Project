@@ -1,8 +1,4 @@
-id,FirstaName,SecondName,Password,SavingBalance,checkingBalacne,state
-  1, Rema      , Ahmed     ,      123,            10,              20
-  1, Rema      , Ahmed     ,      123,            10,              20
-  1, Rema      , Ahmed     ,      123,            10,              20
- 33, sara      , rami      ,     8787,          4000,             687
- 77, Abrar     , essa      ,      777,           300,             600
-999, deem      , ali       ,      222,           345,             500
-234,heba,al,234,456,456
+id,FirstName,lastName,password,SavingBalance,checkingBalacne,state
+77,Abrar,al,777,600,-65,active
+77,abrar,alabbad,777,600,-65,active
+88,reema,ahmed,888,0,0,active

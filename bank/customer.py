@@ -1,8 +1,8 @@
 
 class Customer():
-    def __init__(self,idd,firstName ,secondName, password ,balancSavingAccount,balancCheckingAccount, state):  
+    def __init__(self,idd,FirstName ,secondName, password ,balancSavingAccount,balancCheckingAccount, state):  
         self.id= idd
-        self.firstName = firstName
+        self.FirstName = FirstName
         self.secondName =secondName
         self.password = password 
         self.balancSavingAccount = balancSavingAccount
@@ -12,7 +12,7 @@ class Customer():
         
         
     def __str__(self):
-        return f"{self.firstName} {self.secondName}"
+        return f"{self.FirstName} {self.secondName}"
         
 
     
