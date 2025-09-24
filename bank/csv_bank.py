@@ -14,7 +14,14 @@ class csvFile:
             reader = list(csv.DictReader(file))
             for row in reader:
                 if idd.strip() == row['id'].strip() and password.strip()== row["Password"].strip():
-                    return row["FirstaName"].strip()+' '+row["SecondName"].strip()
+                    # return row["FirstaName"].strip()+' '+row["SecondName"].strip()
+                    return Customer(
+                    row["id"].strip(),
+                    row["FirstaName"].strip(),
+                    row["SecondName"].strip(),
+                    row["Password"].strip(),
+                    row["SavingBalance"].strip(),
+                    row["checkingBalacne"].strip())
             return False
 
 

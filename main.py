@@ -1,6 +1,8 @@
 from bank.customer import Customer
 # import bank.csv_bank 
 from bank.csv_bank import csvFile
+from bank.account import Withdraw, Deposit
+
 # python3 main.py
 
 # Error Exception classes 
@@ -25,12 +27,12 @@ def userLogin():
     password = input("Enter Password : ")
     
     #  sraech for the user info
-    result = csvFile.search(idd, password)
-    if result == False :
+    customer_result = csvFile.search(idd, password)
+    if customer_result == False :
         raise customerNotFoundError("Paaword or Id not correct, Please try again !")
         return False
     else:
-       print(f'Weclome {result} !! ')
+       print(f'Weclome {customer_result} !! ')
        while(True):
             print("What action do you want to preform")
             print(" 1/ Withdraw ")
@@ -41,7 +43,7 @@ def userLogin():
     
             match choose :
                 case 1 :
-                    pass
+                    Withdraw(customer_result)
                 case 2 :
                     pass 
                 case 3 :

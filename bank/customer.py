@@ -7,5 +7,12 @@ class Customer():
         self.password = password 
         self.balancSavingAccount = balancSavingAccount
         self.balancCheckingAccount = balancCheckingAccount
+        
+        
+        
+    def __str__(self):
+        return f"{self.firstName} {self.secondName}"
+        
+
     
 
