@@ -17,8 +17,9 @@ def customerInfo():
     password = input("Enter Password : ")
     saving = input("Enter Saving account inital Balance : ")
     checking = input("Enter Checking account inital Balance : ")
+    state = "active"
     
-    return Customer(idd, fname, lname, password, saving, checking)
+    return Customer(idd, fname, lname, password, saving, checking, state)
 
 
 def userLogin():
@@ -66,9 +67,10 @@ while(True):
     match userChoose:
         case 1 :
             new_customer = customerInfo()
-            file = bank.csv_bank 
+            # file = bank.csv_bank 
+            file = csvFile
             file.addNewCustomer(new_customer)
-            print(f'Welcome , {new_customer.fname}  /n Added Sueccssflly')
+            print(f'Welcome , {new_customer.firstName }  /n Added Sueccssflly')
         case 2:
             try:
                 userLogin()

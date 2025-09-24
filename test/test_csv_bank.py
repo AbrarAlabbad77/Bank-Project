@@ -1,7 +1,8 @@
 import unittest
 import csv
 from bank.customer import Customer
-from bank.csv_bank import addNewCustomer, search
+# from bank.csv_bank import addNewCustomer
+from bank.csv_bank import search
 
 # python3 -m unittest test.test_csv_bank
 
