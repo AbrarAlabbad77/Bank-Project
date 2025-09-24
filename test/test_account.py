@@ -2,6 +2,7 @@ import unittest
 import csv 
 from bank.customer import Customer
 from bank.account import Withdraw
+from bank.account import NagitveBalancError
 # python3 -m unittest test.test_account
 
 class test_withdraw(unittest.TestCase):
@@ -22,3 +23,7 @@ class test_withdraw(unittest.TestCase):
         withdrawObject.customer.balancSavingAccount = new_balance
         self.assertEqual(int(withdrawObject.customer.balancSavingAccount), 50)
 
+    def test_withdraw_negative_balance_error(self):
+        self.customer.balancCheckingAccount = "0"
+        with self.assertRaises(NagitveBalancError):   
+            raise NagitveBalancError("sorry [Negative Mode]! you can not withdraw more than $65")
