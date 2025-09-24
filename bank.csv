@@ -2,3 +2,4 @@ id,FirstName,lastName,password,SavingBalance,checkingBalacne,state
 77,Abrar,al,777,600,-65,active
 77,abrar,alabbad,777,600,-65,active
 88,reema,ahmed,888,0,0,active
+1,Reema,Ahmed,555,10,20,active

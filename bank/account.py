@@ -25,7 +25,7 @@ class Withdraw():
                         raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $65")
                         return
                 self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) - amount
-                print(f" Withdraw successful. New Checking Balance: {self.customer.balancCheckingAccount}")
+                print(f" Withdraw successfuly. New Checking Balance: {self.customer.balancCheckingAccount}")
                 update_checking_balance(self.customer)   
             case 2 :
                 print(f'Your curent saving Balance :,{self.customer.balancSavingAccount} ...') 
@@ -35,16 +35,11 @@ class Withdraw():
                         raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $65")
                         return
                 self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) - amount
-                print(f" Withdraw successful. New Saving Balance: {self.customer.balancSavingAccount}")
+                print(f" Withdraw successfuly. New Saving Balance: {self.customer.balancSavingAccount}")
                 update_saving_balance(self.customer)   
                    
             
-
-
-
-
-
- # up date the csv file after witdrawing 
+ # update the csv file after witdrawing from cheking account 
 def update_checking_balance(updated_customer):
     all_rows = []
     with open('bank.csv', 'r', newline='') as file:
@@ -60,7 +55,7 @@ def update_checking_balance(updated_customer):
         writer.writeheader()
         writer.writerows(all_rows)      
                     
-
+# update the csv file after witdrawing from cheking account 
 def update_saving_balance(updated_customer):
     all_rows = []
     with open('bank.csv', 'r', newline='') as file:
@@ -75,8 +70,35 @@ def update_saving_balance(updated_customer):
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(all_rows)                 
-   
+  
+  
+#   handle deposit  
 class Deposit():
     def __init__(self, customer):
         self.customer = customer
+        
+    def deposit_operation(self):
+        print("Do You want to deposit into Saving or checking account ?")
+        print("Enter 1 for checking")
+        print("      2 for saving")
+        userChoose = int(input(''))
+        
+        match userChoose:
+            case 1 :
+                print(f'Your curent checking Balance :,{self.customer.balancCheckingAccount} ...') 
+                amount = int(input('Enter the amount you want to deposit : '))
+                
+                self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) + amount
+                print(f" Diposit successfuly. New Checking Balance: {self.customer.balancCheckingAccount}")
+                update_checking_balance(self.customer)   
+            case 2 :
+                print(f'Your curent saving Balance :,{self.customer.balancSavingAccount} ...') 
+                amount = int(input('Enter the amount you want to deposit : '))
+                
+                self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) + amount
+                print(f" Diposit successfuly. New Saving Balance: {self.customer.balancSavingAccount}")
+                update_saving_balance(self.customer)   
+                   
+        
+    
     

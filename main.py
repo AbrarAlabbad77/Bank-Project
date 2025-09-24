@@ -44,11 +44,11 @@ def userLogin():
     
             match choose :
                 case 1 :
-                    # Withdraw(customer_result)
                     Withdraw_object = Withdraw(customer_result)
                     Withdraw_object.withdraw_operation()
                 case 2 :
-                    pass 
+                    deposit_object = Deposit(customer_result)
+                    deposit_object.deposit_operation()
                 case 3 :
                     pass 
                 case 4 : 
@@ -59,38 +59,30 @@ def userLogin():
 
 
 #  main flow 
-while(True):
-    print("What action do you want to preform")
-    print(" 1/ Add New Customer ")
-    print(" 2/ Log in ")
-    print(" 3/ Exit ")
-    userChoose = int(input('Enter Your choose number'))
-    
-    match userChoose:
-        case 1 :
-            new_customer = customerInfo()
-            # file = bank.csv_bank 
-            file = csvFile
-            file.addNewCustomer(new_customer)
-            print(f'Welcome , {new_customer.FirstName }   Added Sueccssflly')
-        case 2:
-            try:
-                userLogin()
-            except Exception as e:
-                print("Unexpected Error:", e)
-        case 3 :
-            print("Exiting...")
-            break 
+if __name__ == "__main__":
+    while(True):
+        print("What action do you want to preform")
+        print(" 1/ Add New Customer ")
+        print(" 2/ Log in ")
+        print(" 3/ Exit ")
+        userChoose = int(input('Enter Your choose number'))
+        
+        match userChoose:
+            case 1 :
+                new_customer = customerInfo()
+                # file = bank.csv_bank 
+                file = csvFile
+                file.addNewCustomer(new_customer)
+                print(f'Welcome , {new_customer.FirstName }   Added Sueccssflly')
+            case 2:
+                try:
+                    userLogin()
+                except Exception as e:
+                    print("Unexpected Error:", e)
+            case 3 :
+                print("Exiting...")
+                break 
 
-    
-
-
-# try:
-#     userLogin()
-# except customerNotFoundError as e:
-#         print("Customer Not Found Error:", e) 
-# except Exception as e:
-#         print("Unexpected Error:", e)            
     
 
  
