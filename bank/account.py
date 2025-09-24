@@ -7,7 +7,7 @@ class NagitveBalancError(Exception):
 class Withdraw():
     def __init__(self, customer):
         self.customer = customer
-        self.withdraw_operation()
+        # self.withdraw_operation()
         
         
     def withdraw_operation(self):
@@ -30,7 +30,10 @@ class Withdraw():
             case 2 :
                 print(f'Your curent saving Balance :,{self.customer.balancSavingAccount} ...') 
                 amount = int(input('Enter the amount you want to withdraw'))
-                
+                if(int(self.customer.balancSavingAccount) <= 0):
+                    if(amount>65):
+                        raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $65")
+                        return
                 self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) - amount
                 print(f" Withdraw successful. New Saving Balance: {self.customer.balancSavingAccount}")
                 update_saving_balance(self.customer)   

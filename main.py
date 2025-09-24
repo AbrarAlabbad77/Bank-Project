@@ -44,7 +44,9 @@ def userLogin():
     
             match choose :
                 case 1 :
-                    Withdraw(customer_result)
+                    # Withdraw(customer_result)
+                    Withdraw_object = Withdraw(customer_result)
+                    Withdraw_object.withdraw_operation()
                 case 2 :
                     pass 
                 case 3 :
