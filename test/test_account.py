@@ -3,6 +3,7 @@ import csv
 from bank.customer import Customer
 from bank.account import Withdraw
 from bank.account import NagitveBalancError
+from banck.account import Deposit
 # python3 -m unittest test.test_account
 
 class test_withdraw(unittest.TestCase):
@@ -27,3 +28,12 @@ class test_withdraw(unittest.TestCase):
         self.customer.balancCheckingAccount = "0"
         with self.assertRaises(NagitveBalancError):   
             raise NagitveBalancError("sorry [Negative Mode]! you can not withdraw more than $65")
+        
+        
+# class test_deposit(unittest.TestCase):
+#     def setUp(self):
+#         self.customer = Customer ("99", "Abrar", "Ahmed", "999", "100", "600", "active")
+    
+#     def test_deposit_checking(self):
+        
+    
