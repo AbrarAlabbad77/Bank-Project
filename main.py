@@ -1,7 +1,7 @@
 from bank.customer import Customer
 # import bank.csv_bank 
 from bank.csv_bank import csvFile
-from bank.account import Withdraw, Deposit
+from bank.account import Withdraw, Deposit, Transfer
 
 # python3 main.py
 
@@ -50,7 +50,12 @@ def userLogin():
                     deposit_object = Deposit(customer_result)
                     deposit_object.deposit_operation()
                 case 3 :
-                    pass 
+                    try:
+                        transfer_object = Transfer(customer_result)
+                        transfer_object.transfer_operation()
+                    except Exception as e:
+                        print("Unexpected Error:", e)
+                    
                 case 4 : 
                     print("Logining out...")
                     break

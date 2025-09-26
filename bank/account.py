@@ -114,14 +114,16 @@ class Deposit():
                 
                 self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) + amount
                 print(f" Diposit successfuly. New Checking Balance: {self.customer.balancCheckingAccount}")
-                update_checking_balance(self.customer)   
+                # update_checking_balance(self.customer) 
+                update_balance(self.customer)   
             case 2 :
                 print(f'Your current saving Balance :,{self.customer.balancSavingAccount} ...') 
                 amount = int(input('Enter the amount you want to deposit : '))
                 
                 self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) + amount
                 print(f" Diposit successfuly. New Saving Balance: {self.customer.balancSavingAccount}")
-                update_saving_balance(self.customer)   
+                # update_saving_balance(self.customer)  
+                update_balance(self.customer)   
                    
   
 class Transfer():
@@ -129,43 +131,44 @@ class Transfer():
     def __init__(self,customer):
         self.customer = customer
     
-    print('Do you want to transfer locally or to another account ? ')
-    print("Enter 1 for locally")
-    print("      2 for another account")
-    userChoose = int(input(''))
-     
-    match userChoose:
-        case 1 :
-            print('Do you wnt to trasfer ')
-            print("Enter 1 from saving into checking")
-            print("      2 from checking into saving")
-            choose = int(input(''))
-            
-            match choose:
-                # from saving into checking
-                case 1:
-                    amount = int(input('how much do you want to transfer into checking'))
-                    if(amount>customer.balancSavingAccount):
-                        raise balanceNotEnoghError('Sorry! your insufficient balance to make a transfer ')
-                        return 
-                    self.customer.balancSavingAccount = self.customer.balancSavingAccount - amount
-                    self.customer.balancCheckingAccount = self.customer.balancCheckingAccount + amount
-                    update_balance(self.customer)  
-            
-                # from checking into saving
-                case 2:
-                    amount = int(input('how much do you want to transfer into saving'))
-                    if(amount>customer.balancCheckingAccount):
-                        raise balanceNotEnoghError('Sorry! your insufficient balance to make a transfer ')
-                        return 
-                    self.customer.balancCheckingAccount = self.customer.balancCheckingAccount - amount
-                    self.customer.balancSavingAccount = self.customer.balancSavingAccount + amount
-                    update_balance(self.customer)  
+    def transfer_operation(self):
+        print('Do you want to transfer locally or to another account ? ')
+        print("Enter 1 for locally")
+        print("      2 for another account")
+        userChoose = int(input(''))
         
+        match userChoose:
+            case 1 :
+                print('Do you wnt to trasfer ')
+                print("Enter 1 from saving into checking")
+                print("      2 from checking into saving")
+                choose = int(input(''))
+                
+                match choose:
+                    # from saving into checking
+                    case 1:
+                        amount = int(input('how much do you want to transfer into checking'))
+                        if(amount > int(self.customer.balancSavingAccount)):
+                            raise balanceNotEnoghError('Sorry!  insufficient balance to make a transfer ')
+                            return 
+                        self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) - amount
+                        self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) + amount
+                        update_balance(self.customer)  
+                
+                    # from checking into saving
+                    case 2:
+                        amount = int(input('how much do you want to transfer into saving'))
+                        if(amount > int(self.customer.balancCheckingAccount)):
+                            raise balanceNotEnoghError('Sorry!  insufficient balance to make a transfer ')
+                            return 
+                        self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) - amount
+                        self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) + amount
+                        update_balance(self.customer)  
             
-        #  transfer to another account 
-        case 2 : 
-            pss 
-            
+                
+            #  transfer to another account 
+            case 2 : 
+                pss 
+                
     
     
