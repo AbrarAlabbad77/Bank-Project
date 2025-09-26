@@ -4,6 +4,7 @@ from bank.customer import Customer
 
 class csvFile:
     
+    #  search for user login 
     def search(idd , password):
         with open('bank.csv', 'r', newline='') as file:
             reader = list(csv.DictReader(file))
@@ -19,6 +20,26 @@ class csvFile:
                     row["checkingBalacne"].strip(),
                     row["state"].strip())
             return False
+        
+        
+        
+     #  search for transferm between account 
+    def search_between_account(idd , FirstName):
+        with open('bank.csv', 'r', newline='') as file:
+            reader = list(csv.DictReader(file))
+            for row in reader:
+                if idd.strip() == row['id'].strip() and FirstName.strip()== row["FirstName"].strip():
+                    # return row["FirstaName"].strip()+' '+row["SecondName"].strip()
+                    return Customer(
+                    row["id"].strip(),
+                    row["FirstName"].strip(),
+                    row["lastName"].strip(),
+                    row["password"].strip(),
+                    row["SavingBalance"].strip(),
+                    row["checkingBalacne"].strip(),
+                    row["state"].strip())
+            return False
+
 
 
     def reading():

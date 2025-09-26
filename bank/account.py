@@ -1,12 +1,9 @@
 import csv
 from bank.customer import Customer
+from bank.csv_bank import csvFile
+from bank.error import customerNotFoundError
+from bank.error import NagitveBalancError, balanceNotEnoghError
 
-#  Errors classes
-class NagitveBalancError(Exception):
-    pass
-
-class balanceNotEnoghError(Exception):
-    pass
 
 
 
@@ -133,11 +130,12 @@ class Transfer():
     
     def transfer_operation(self):
         print('Do you want to transfer locally or to another account ? ')
-        print("Enter 1 for locally")
-        print("      2 for another account")
+        print("Transfer 1 into locally")
+        print("         2 into another account")
         userChoose = int(input(''))
         
         match userChoose:
+            # transfer locally
             case 1 :
                 print('Do you wnt to trasfer ')
                 print("Enter 1 from saving into checking")
@@ -165,10 +163,27 @@ class Transfer():
                         self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) + amount
                         update_balance(self.customer)  
             
-                
             #  transfer to another account 
             case 2 : 
-                pss 
+                reciverID =input('Enter the account number you want to transferm into ')
+                reciverName =input('Enter FIRST name of account onwer')
+                receiver = csvFile.search_between_account(reciverID,reciverName)
+                if(receiver == False): 
+                    raise customerNotFoundError("name or  customer Id not correct, Please try again !")
+                    return
+                transfer_between_account(self.customer,receiver)
                 
+              
+def transfer_between_account(customer,receiver):
+    amount = int(input('Enter the amount you want to transfer'))   
+    if(amount > int(customer.balancCheckingAccount)):
+        raise balanceNotEnoghError('Sorry!  insufficient balance to make a transfer ')
+    customer.balancCheckingAccount = int(customer.balancCheckingAccount) - amount
+    receiver.balancCheckingAccount = int(receiver.balancCheckingAccount) + amount 
+    print('Transfered Successfully ')  
+    print(f'Your new balance is {customer.balancCheckingAccount} ..')      
+    update_balance(customer)
+    update_balance(receiver)
+      
     
     

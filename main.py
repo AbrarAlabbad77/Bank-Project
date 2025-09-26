@@ -1,13 +1,12 @@
 from bank.customer import Customer
-# import bank.csv_bank 
 from bank.csv_bank import csvFile
 from bank.account import Withdraw, Deposit, Transfer
+from bank.error import customerNotFoundError
+
 
 # python3 main.py
 
-# Error Exception classes 
-class customerNotFoundError(Exception):
-    pass
+
 
 def customerInfo():
     print("Hello , welcome to our bank !! ")
