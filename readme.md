@@ -42,7 +42,8 @@ It supports overdraft handling, account states (active/inactive), and CSV file s
 3. Run tests:
 
    ```bash
-   python3 -m unittest discover test
+   python3 -m unittest test.(file.name.py)
+
    ```
 
 ---
