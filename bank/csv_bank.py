@@ -37,7 +37,8 @@ class csvFile:
                     row["password"].strip(),
                     row["SavingBalance"].strip(),
                     row["checkingBalacne"].strip(),
-                    row["state"].strip())
+                    row["state"].strip(),
+                    row["overdraftCounter"].strip())
             return False
 
 
@@ -56,6 +57,6 @@ class csvFile:
         with open('bank.csv', 'a', newline='') as file:
             writer = csv.writer(file)
             writer.writerow([Customer.id,Customer.FirstName, Customer.secondName,Customer.password,
-                            Customer.balancSavingAccount, Customer.balancCheckingAccount, Customer.state])
+                            Customer.balancSavingAccount, Customer.balancCheckingAccount, Customer.state , Customer.overdraftCounter])
 
 

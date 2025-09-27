@@ -14,6 +14,11 @@ class Withdraw():
         
         
     def withdraw_operation(self):
+        
+        if self.customer.state == 'inactive':
+            raise NagitveBalancError('Your account is deactivated due to overdrafts.')
+            return
+        
         print("Do You want to withdraw from Saving or checking account ?")
         print("Enter 1 for checking")
         print("      2 for saving")
@@ -24,23 +29,53 @@ class Withdraw():
                 print(f'Your current checking Balance :,{self.customer.balancCheckingAccount} ...') 
                 amount = int(input('Enter the amount you want to withdraw'))
                 if(int(self.customer.balancCheckingAccount) <= 0):
-                    if(amount>65):
-                        raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $65")
+                    if(amount>100):
+                        raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $100")
                         return
-                self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) - amount
+                # self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) - amount
+                temp_balance = int(self.customer.balancCheckingAccount) - amount
+                
+                # handle overdraft 
+                if temp_balance <= -100:
+                    raise raise NagitveBalancError("withdraw denied")
+                    return
+                
+                if temp_balance < 0 :
+                    print("overdraft happen ! it cost 35$ ")
+                    temp_balance = temp_balance - 35
+                    self.customer.overdraftCounter = self.overdraftCounter + 1
+                    
+                    if self.customer.overdraftCounter == 2 :
+                        self.customer.state ="inactive"
+                
+                self.customer.balancCheckingAccount = temp_balance
                 print(f" Withdraw successfuly. New Checking Balance: {self.customer.balancCheckingAccount}")
-                # update_checking_balance(self.customer)
                 update_balance(self.customer)     
             case 2 :
                 print(f'Your current saving Balance :,{self.customer.balancSavingAccount} ...') 
                 amount = int(input('Enter the amount you want to withdraw'))
                 if(int(self.customer.balancSavingAccount) <= 0):
-                    if(amount>65):
-                        raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $65")
+                    if(amount>100):
+                        raise NagitveBalancError("sorry [Nagitive Mode]! you can not withdraw more than $100")
                         return
-                self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) - amount
+                # self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) - amount
+                temp_balance = int(self.customer.balancSavingAccount) - amount
+                
+                # handle overdraft 
+                if temp_balance < -100:
+                    raise  NagitveBalancError("withdraw denied")
+                    return
+                
+                if temp_balance < 0 :
+                    print("overdraft happen ! it cost 35$ ")
+                    temp_balance = temp_balance - 35
+                    self.customer.overdraftCounter = self.customer.overdraftCounter + 1
+                    
+                    if self.customer.overdraftCounter == 2 :
+                        self.customer.state ="inactive"
+                
+                self.customer.balancSavingAccount = temp_balance
                 print(f" Withdraw successfuly. New Saving Balance: {self.customer.balancSavingAccount}")
-                # update_saving_balance(self.customer)  
                 update_balance(self.customer)  
                    
             
@@ -85,10 +120,12 @@ def update_balance(updated_customer):
             if str(updated_customer.id) == row['id'] and str(updated_customer.password)== row["password"]:
                 row['checkingBalacne'] = str(updated_customer.balancCheckingAccount)
                 row['SavingBalance'] = str(updated_customer.balancSavingAccount)
+                row['state'] = updated_customer.state
+                row['overdraftCounter'] = updated_customer.overdraftCounter
             all_rows.append(row)    
             
     with open('bank.csv', 'w', newline='') as file: 
-        fieldnames = ['id','FirstName','lastName','password','SavingBalance','checkingBalacne','state']
+        fieldnames = ['id','FirstName','lastName','password','SavingBalance','checkingBalacne','state','overdraftCounter']
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(all_rows)     
@@ -109,17 +146,22 @@ class Deposit():
                 print(f'Your current checking Balance :,{self.customer.balancCheckingAccount} ...') 
                 amount = int(input('Enter the amount you want to deposit : '))
                 
+                if self.customer.balancCheckingAccount <= 0 and amount > 0 :
+                    self.customer.state= "active"
+                    self.customer.overdraftCounter = 0 
+                    print('Account reactivated')
+                    
+                    
                 self.customer.balancCheckingAccount = int(self.customer.balancCheckingAccount) + amount
                 print(f" Diposit successfuly. New Checking Balance: {self.customer.balancCheckingAccount}")
-                # update_checking_balance(self.customer) 
                 update_balance(self.customer)   
             case 2 :
                 print(f'Your current saving Balance :,{self.customer.balancSavingAccount} ...') 
                 amount = int(input('Enter the amount you want to deposit : '))
                 
+                
                 self.customer.balancSavingAccount = int(self.customer.balancSavingAccount) + amount
-                print(f" Diposit successfuly. New Saving Balance: {self.customer.balancSavingAccount}")
-                # update_saving_balance(self.customer)  
+                print(f" Diposit successfuly. New Saving Balance: {self.customer.balancSavingAccount}") 
                 update_balance(self.customer)   
                    
   

@@ -3,10 +3,7 @@ from bank.csv_bank import csvFile
 from bank.account import Withdraw, Deposit, Transfer
 from bank.error import customerNotFoundError
 
-
 # python3 main.py
-
-
 
 def customerInfo():
     print("Hello , welcome to our bank !! ")
@@ -18,7 +15,7 @@ def customerInfo():
     checking = input("Enter Checking account inital Balance : ")
     state = "active"
     
-    return Customer(idd, fname, lname, password, saving, checking, state)
+    return Customer(idd, fname, lname, password, saving, checking, state , 0)
 
 
 def userLogin():
