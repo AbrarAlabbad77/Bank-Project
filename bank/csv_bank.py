@@ -18,7 +18,8 @@ class csvFile:
                     row["password"].strip(),
                     row["SavingBalance"].strip(),
                     row["checkingBalacne"].strip(),
-                    row["state"].strip())
+                    row["state"].strip(),
+                    row["overdraftCounter"])
             return False
         
         
@@ -38,7 +39,7 @@ class csvFile:
                     row["SavingBalance"].strip(),
                     row["checkingBalacne"].strip(),
                     row["state"].strip(),
-                    row["overdraftCounter"].strip())
+                    row["overdraftCounter"])
             return False
 
 

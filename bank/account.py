@@ -37,13 +37,13 @@ class Withdraw():
                 
                 # handle overdraft 
                 if temp_balance <= -100:
-                    raise raise NagitveBalancError("withdraw denied")
+                    raise NagitveBalancError("withdraw denied")
                     return
                 
                 if temp_balance < 0 :
                     print("overdraft happen ! it cost 35$ ")
                     temp_balance = temp_balance - 35
-                    self.customer.overdraftCounter = self.overdraftCounter + 1
+                    self.customer.overdraftCounter = self.customer.overdraftCounter + 1
                     
                     if self.customer.overdraftCounter == 2 :
                         self.customer.state ="inactive"
@@ -77,39 +77,8 @@ class Withdraw():
                 self.customer.balancSavingAccount = temp_balance
                 print(f" Withdraw successfuly. New Saving Balance: {self.customer.balancSavingAccount}")
                 update_balance(self.customer)  
-                   
+                
             
-# #  # update the csv file after witdrawing from cheking account 
-# def update_checking_balance(updated_customer):
-#     all_rows = []
-#     with open('bank.csv', 'r', newline='') as file:
-#         reader = list(csv.DictReader(file))
-#         for row in reader:
-#             if str(updated_customer.id) == row['id'] and str(updated_customer.password)== row["password"]:
-#                 row['checkingBalacne'] = str(updated_customer.balancCheckingAccount)
-#             all_rows.append(row)    
-            
-#     with open('bank.csv', 'w', newline='') as file: 
-#         fieldnames = ['id','FirstName','lastName','password','SavingBalance','checkingBalacne','state']
-#         writer = csv.DictWriter(file, fieldnames=fieldnames)
-#         writer.writeheader()
-#         writer.writerows(all_rows)      
-                    
-# # update the csv file after witdrawing/deposit 
-# def update_saving_balance(updated_customer):
-#     all_rows = []
-#     with open('bank.csv', 'r', newline='') as file:
-#         reader = list(csv.DictReader(file))
-#         for row in reader:
-#             if str(updated_customer.id) == row['id'] and str(updated_customer.password)== row["password"]:
-#                 row['SavingBalance'] = str(updated_customer.balancSavingAccount)
-#             all_rows.append(row)    
-            
-#     with open('bank.csv', 'w', newline='') as file: 
-#         fieldnames = ['id','FirstName','lastName','password','SavingBalance','checkingBalacne','state']
-#         writer = csv.DictWriter(file, fieldnames=fieldnames)
-#         writer.writeheader()
-#         writer.writerows(all_rows)                 
   
 # update the csv file after witdrawing/deposit or tansferm 
 def update_balance(updated_customer):
@@ -146,7 +115,9 @@ class Deposit():
                 print(f'Your current checking Balance :,{self.customer.balancCheckingAccount} ...') 
                 amount = int(input('Enter the amount you want to deposit : '))
                 
-                if self.customer.balancCheckingAccount <= 0 and amount > 0 :
+                #  handle overdraft 
+                new_balance = int(self.customer.balancCheckingAccount)+ amount
+                if new_balance >= 0 :
                     self.customer.state= "active"
                     self.customer.overdraftCounter = 0 
                     print('Account reactivated')

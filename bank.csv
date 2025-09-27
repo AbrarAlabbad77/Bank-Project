@@ -1,5 +1,5 @@
 id,FirstName,lastName,password,SavingBalance,checkingBalacne,state,overdraftCounter
-77,Abrar,al,777,600,135,active
-77,abrar,alabbad,777,600,135,active
-88,reema,ahmed,888,50,100,active
-1,Reema,Ahmed,555,10,70,active
+77,Abrar,al,777,600,135,active,0
+77,abrar,alabbad,777,600,135,active,0
+88,reema,ahmed,888,50,10,active,0
+1,Reema,Ahmed,555,10,70,active,0

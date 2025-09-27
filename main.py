@@ -15,7 +15,7 @@ def customerInfo():
     checking = input("Enter Checking account inital Balance : ")
     state = "active"
     
-    return Customer(idd, fname, lname, password, saving, checking, state , 0)
+    return Customer(idd, fname, lname, password, saving, checking, state , '0')
 
 
 def userLogin():
